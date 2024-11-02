@@ -10,7 +10,11 @@
       ansible.builtin.file:
         path: /usr/share/nginx/html/
         state: absent
-
+    - name: Unarchive a file that is already on the remote machine
+      ansible.builtin.unarchive:
+        src: https://expense-artifacts.s3.amazonaws.com/expense-frontend-v2.zip
+        dest: /usr/share/nginx/html
+        remote_src: yes
 
 #    - name: Start Nginx
 #      ansible.builtin.systemd_service:
@@ -19,18 +23,12 @@
 #        enabled: true
 #        daemon_reload: true
 
-#    Remove the default content that web server is serving.
-#
-#    rm -rf /usr/share/nginx/html/*
 #
 #    Download the frontend content
 #
 #    curl -o /tmp/frontend.zip https://expense-artifacts.s3.amazonaws.com/expense-frontend-v2.zip
-#
-#
-#    Extract the frontend content.
-#
-#    cd /usr/share/nginx/html
+##    Extract the frontend content.
+##    cd /usr/share/nginx/html
 #    unzip /tmp/frontend.zip
 #
 #    info
