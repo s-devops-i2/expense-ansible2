@@ -23,12 +23,12 @@
         dest: /usr/share/nginx/html
         remote_src: yes
 
-#    - name: Start Nginx
-#      ansible.builtin.systemd_service:
-#        state: started
-#        name: nginx
-#        enabled: true
-#        daemon_reload: true
+    - name: Start Nginx
+      ansible.builtin.systemd_service:
+        state: restarted
+        name: nginx
+        enabled: true
+        daemon_reload: true
 
 #
 #    Download the frontend content
