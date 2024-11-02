@@ -30,10 +30,10 @@
         enabled: true
         daemon_reload: true
 
-- name: Copy file Nginx Reverse Proxy
-  ansible.builtin.copy:
-    src: expense.conf
-    dest: /etc/nginx/default.d/expense.conf
+    - name: Copy file Nginx Reverse Proxy
+      ansible.builtin.copy:
+        src: expense.conf
+        dest: /etc/nginx/default.d/expense.conf
 
 #    Create Nginx Reverse Proxy Configuration.
 #
