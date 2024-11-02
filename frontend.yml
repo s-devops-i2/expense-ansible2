@@ -23,37 +23,14 @@
         dest: /usr/share/nginx/html
         remote_src: yes
 
+    - name: Copy file Nginx Reverse Proxy
+      ansible.builtin.copy:
+        src: expense.conf
+        dest: /etc/nginx/default.d/expense.conf
+
     - name: Start Nginx
       ansible.builtin.systemd_service:
         state: restarted
         name: nginx
         enabled: true
         daemon_reload: true
-
-    - name: Copy file Nginx Reverse Proxy
-      ansible.builtin.copy:
-        src: expense.conf
-        dest: /etc/nginx/default.d/expense.conf
-
-#    Create Nginx Reverse Proxy Configuration.
-#
-#    vim /etc/nginx/default.d/expense.conf
-#
-#    Add the following content
-#
-#    /etc/nginx/default.d/expense.conf
-#    proxy_http_version 1.1;
-#
-#    location /api/ { proxy_pass http://localhost:8080/; }
-#
-#    location /health {
-#    stub_status on;
-#    access_log off;
-#  }
-#
-#    Note
-#    Ensure you replace the localhost with the actual ip address of backend component server. Word localhost is just used to avoid the failures on the Nginx Server.
-#
-#    Restart Nginx Service to load the changes of the configuration.
-#
-#    systemctl restart nginx
