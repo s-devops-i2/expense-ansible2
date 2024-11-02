@@ -6,30 +6,19 @@
       ansible.builtin.dnf:
         name: nginx
         state: latest
-
-    - name: Start Nginx
-      ansible.builtin.systemd_service:
-        state: started
-        name: nginx
-        enabled: true
-        daemon_reload: true
+    - name: Remove Old content
+      ansible.builtin.file:
+        path: /usr/share/nginx/html/*
+        state: absent
 
 
+#    - name: Start Nginx
+#      ansible.builtin.systemd_service:
+#        state: started
+#        name: nginx
+#        enabled: true
+#        daemon_reload: true
 
-
-
-
-
-
-
-#    Start & Enable Nginx service
-#
-#    systemctl enable nginx
-#    systemctl start nginx
-#
-#    info
-#    Try to access the service once over the browser and ensure you get some default content.
-#
 #    Remove the default content that web server is serving.
 #
 #    rm -rf /usr/share/nginx/html/*
