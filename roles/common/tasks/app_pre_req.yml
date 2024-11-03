@@ -1,0 +1,20 @@
+- name: Remove Old content
+  ansible.builtin.file:
+    path: "{{ app_dir }}"
+    state: absent
+
+- name: Create Directory
+  ansible.builtin.file:
+    path: "{{ app_dir }}"
+    state: directory
+
+
+- name: Unarchive a file that is already on the remote machine
+  ansible.builtin.unarchive:
+    src: https://expense-artifacts.s3.amazonaws.com/expense-"{{ component }}"-v2.zip
+    dest: "{{ app_dir }}"
+    remote_src: yes
+
+
+
+

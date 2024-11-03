@@ -1,0 +1,22 @@
+- name: Install Nginx
+  ansible.builtin.dnf:
+    name: nginx
+    state: latest
+
+- name: Copy file Nginx Reverse Proxy
+  ansible.builtin.copy:
+    src: expense.conf
+    dest: /etc/nginx/default.d/expense.conf
+
+- name: Run tasks/other.yaml instead of 'main'
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: app_pre_req
+
+- name: Start Nginx
+  ansible.builtin.systemd_service:
+    state: restarted
+    name: nginx
+    enabled: true
+    daemon_reload: true
+
