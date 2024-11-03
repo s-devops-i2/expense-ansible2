@@ -1,0 +1,4 @@
+- name: Expense playbook
+  hosts: all
+  roles:
+    - frontend
