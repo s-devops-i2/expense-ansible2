@@ -1,5 +1,5 @@
-- name: Expense { { role_name } } playbook
+- name: Expense playbook
   hosts: all
   become: true
   roles:
-    - "{ { role_name } }"
+    - "{{ role_name }}"
