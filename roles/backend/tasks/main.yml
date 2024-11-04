@@ -1,0 +1,72 @@
+- name: Disable nodejs
+  ansible.builtin.shell: dnf module disable nodejs -y
+
+- name: Enable nodejs:20
+  ansible.builtin.shell: dnf module enable nodejs:20 -y
+
+- name: Install nodejs
+  ansible.builtin.dnf:
+    - name: nodejs
+      state: installed
+
+- name: Add application User
+  ansible.builtin.user:
+    name: expense
+
+- name: Copy Backend Service file
+  ansible.builtin.copy:
+    src: expense.conf
+    dest: /etc/systemd/system/backend.service
+
+- name: Import common role
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: app_pre_req
+
+- name: Download Backend App code
+  ansible.builtin.unarchive:
+    src: https://expense-artifacts.s3.amazonaws.com/expense-{{ component }}-v2.zip
+    dest: /app
+    remote_src: true
+
+- name: npm install
+  community.general.npm:
+    path: /app
+    state: latest
+
+- name: Copy backend service file
+  ansible.builtin.copy:
+    src: backend.service
+    dest: /etc/systemd/system/backend.service
+
+
+- name: Install python mysql client
+  ansible.builtin.pip:
+    name:
+      - cryptography
+      - PyMySQL
+    executable: pip3.11
+
+
+- name: install MySQL Clinet
+  ansible.builtin.dnf:
+    name: mysql
+    state: installed
+
+- name: Load Schema
+  community.mysql.mysql_db:
+    name: all
+    state: import
+    target: /app/schema/backend.sql
+    login_user: root
+    login_password: ExpenseApp@1
+    login_host: mysql-dev.shujathdevops.online
+
+- name: Start Backend
+  ansible.builtin.systemd_service:
+    state: restarted
+    name: backend
+    enabled: true
+    daemon_reload: true
+
+
