@@ -1,5 +1,5 @@
-- name: Expense playbook
+- name: Expense { { role_name } } playbook
   hosts: all
   become: true
   roles:
-    - frontend
+    - "{ { role_name } }"
