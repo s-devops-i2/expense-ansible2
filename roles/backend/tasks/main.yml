@@ -6,7 +6,7 @@
 
 - name: Install nodejs
   ansible.builtin.dnf:
-    - name: nodejs
+      name: nodejs
       state: installed
 
 - name: Add application User
