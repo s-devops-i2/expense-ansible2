@@ -8,7 +8,7 @@
     src: expense.conf
     dest: /etc/nginx/default.d/expense.conf
 
-- name: Run tasks/other.yaml instead of 'main'
+- name: Import common role
   ansible.builtin.import_role:
     name: common
     tasks_from: app_pre_req

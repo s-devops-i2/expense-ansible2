@@ -7,16 +7,12 @@
   ansible.builtin.file:
     path: "{{ app_dir }}"
     state: directory
-    owner: "{{ app_user }}"
-    group: "{{ app_user }}"
 
 
 - name: Unarchive a file that is already on the remote machine
   ansible.builtin.unarchive:
-    src: https://expense-artifacts.s3.amazonaws.com/expense-"{{ component }}"-v2.zip
+    src: https://expense-artifacts.s3.amazonaws.com/expense-frontend-v2.zip
     dest: "{{ app_dir }}"
-    owner: "{{ app_user }}"
-    group: "{{ app_user }}"
     remote_src: yes
 
 
