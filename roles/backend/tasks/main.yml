@@ -14,7 +14,7 @@
     name: expense
 
 - name: Copy Backend Service file
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: expense.conf
     dest: /etc/systemd/system/backend.service
 
@@ -22,12 +22,6 @@
   ansible.builtin.import_role:
     name: common
     tasks_from: app_pre_req
-
-- name: Download Backend App code
-  ansible.builtin.unarchive:
-    src: https://expense-artifacts.s3.amazonaws.com/expense-{{ component }}-v2.zip
-    dest: /app
-    remote_src: true
 
 - name: npm install
   community.general.npm:
