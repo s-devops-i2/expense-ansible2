@@ -1,0 +1,2 @@
+- name: Setting up prompt for {{ component }}
+  ansible.builtin.shell: set-prompt {{ component }}-{{ env }}
