@@ -10,5 +10,31 @@
     enabled: true
     daemon_reload: true
 
+- name: Install python mysql client
+  ansible.builtin.pip:
+    name:
+      - cryptography
+      - PyMySQL
+    executable: pip3.11
+
+
+- name: install MySQL Clinet
+  ansible.builtin.dnf:
+    name: mysql
+    state: installed
+
+- name: Get MySQL version with non-default credentials
+  community.mysql.mysql_info:
+    login_user: root
+    login_password: ExpenseApp@1
+    filter: version
+    login_host: mysql-dev.shujathdevops.online
+  register: mysql_root_password
+
+- name: Printing password
+  ansible.builtin.debug:
+    msg: "{{ mysql_root_password }}"
+
+
 - name: Set the Root password
   ansible.builtin.shell: mysql_secure_installation --set-root-pass ExpenseApp@1
