@@ -30,6 +30,8 @@
     filter: version
     login_host: mysql-dev.shujathdevops.online
   register: mysql_root_password
+  ignore_errors: true
+
 
 - name: Printing password
   ansible.builtin.debug:
