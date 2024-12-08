@@ -1,0 +1,31 @@
+format_version: 10
+pipelines:
+  mysql:
+    group: defaultGroup
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    materials:
+      git-3caedef:
+        git: https://github.com/s-devops-i2/expense-ansible2.git
+        shallow_clone: false
+        auto_update: true
+        branch: main
+    stages:
+      - test-stage1:
+          fetch_materials: true
+          keep_artifacts: false
+          clean_workspace: false
+          approval:
+            type: manual
+            allow_only_on_success: false
+          jobs:
+            ansible-playbook:
+              timeout: 0
+              tasks:
+                - exec:
+                    arguments:
+                      - ansible.sh
+                      - mysql
+                    command: bash
+                    run_if: passed
