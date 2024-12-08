@@ -13,6 +13,8 @@ pipelines:
         branch: main
     stages:
       - test-stage1:
+          environment_variables:
+            env: dev
           fetch_materials: true
           keep_artifacts: false
           clean_workspace: false
