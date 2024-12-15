@@ -11,7 +11,7 @@
 
 - name: Add application User
   ansible.builtin.user:
-    name: expense
+    name: "{{app_user}}"
 
 - name: Copy Backend Service file
   ansible.builtin.template:
