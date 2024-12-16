@@ -7,8 +7,7 @@
   ansible.builtin.file:
     path: "{{ app_dir }}"
     state: directory
-    owner: "{{ app_user }}"
-    group: "{{ app_user }}"
+
 
 
 - name: Unarchive a file that is already on the remote machine
