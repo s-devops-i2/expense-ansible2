@@ -26,7 +26,7 @@
 - name: Get MySQL version with non-default credentials
   community.mysql.mysql_info:
     login_user: root
-    login_password: ExpenseApp@1
+    login_password: {{mysql_root_password}}
     filter: version
     login_host: mysql-dev.shujathdevops.online
   register: mysql_root_password
@@ -39,5 +39,5 @@
 
 
 - name: Set the Root password
-  ansible.builtin.shell: mysql_secure_installation --set-root-pass ExpenseApp@1
+  ansible.builtin.shell: mysql_secure_installation --set-root-pass {{mysql_root_password}}
   when: mysql_root_password.failed is true
