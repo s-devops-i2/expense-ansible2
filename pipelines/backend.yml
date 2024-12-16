@@ -11,6 +11,8 @@ pipelines:
         shallow_clone: false
         auto_update: true
         branch: main
+    secure_variables:
+      TESTV: AES:VZg8tFZYz6ICe2wWwhuQ4Q==:G06C/2oB5eMRu/cpLCnHFQ==
     stages:
       - test-stage1:
           environment_variables:
