@@ -1,5 +1,5 @@
 [Service]
-User=expense
+User={{app_user}}
 WorkingDirectory=/app
 Environment=DB_HOST="mysql-{{ env }}.shujathdevops.online"
 Environment=NEW_RELIC_APP_NAME=backend
