@@ -11,8 +11,8 @@ pipelines:
         shallow_clone: false
         auto_update: true
         branch: main
-    secure_variables:
-      vault_token: AES:S3wJVq2LO/mkGiFT6sQFjQ==:xgmpMy1ndiASkaDYbXAO3sB7kAhPXRRRHuFN/LO58Xg=
+  secure_variables:
+    vault_token: AES:OKQCvk/45G8UmVP8WChRag==:FVQNQEyhD+r8swOHub5aUwGk4VwS3S6jsRtdvJnklWA=
     stages:
       - test-stage1:
           environment_variables:
