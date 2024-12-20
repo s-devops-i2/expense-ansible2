@@ -1,3 +1,5 @@
 app_dir: /usr/share/nginx/html/
 app_user: expense
 component: frontend
+log_file: /var/log/nginx/access.log
+
