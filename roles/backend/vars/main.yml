@@ -1,5 +1,6 @@
 app_dir: /app
 app_user: expense
 component: backend
-
+log_file: /var/log/backend.log
+rsyslog_config_needed: true
 
