@@ -6,11 +6,11 @@
     name: prometheus
     tasks_from: node_exporter
 
-- name: Install Logstash
-  ansible.builtin.import_role:
-    name: logstash
-
-- name: rsyslog configuration
-  ansible.builtin.import_role:
-    name: rsyslog
-  when: rsyslog_config_needed
+#- name: Install Logstash
+#  ansible.builtin.import_role:
+#    name: logstash
+#
+#- name: rsyslog configuration
+#  ansible.builtin.import_role:
+#    name: rsyslog
+#  when: rsyslog_config_needed
