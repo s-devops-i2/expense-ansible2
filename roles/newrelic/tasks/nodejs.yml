@@ -1,4 +1,4 @@
-- name: Install nodejs setup
+- name: Install nodejs setups
   community.general.npm:
     name: newrelic
     path: /app
