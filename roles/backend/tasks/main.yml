@@ -27,6 +27,7 @@
   community.general.npm:
     path: /app
     state: latest
+  become_user: expense
 
 - name: Copy backend service file
   ansible.builtin.template:
