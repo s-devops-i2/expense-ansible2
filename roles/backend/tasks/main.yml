@@ -55,7 +55,7 @@
     target: /app/schema/backend.sql
     login_user: root
     login_password: "{{mysql_root_password}}"
-    login_host: "mysql-{{env}}-shujathdevops.online"
+    login_host: "mysql-{{env}}.shujathdevops.online"
 
 - name: Import Newrelic role
   ansible.builtin.import_role:
