@@ -23,10 +23,10 @@
     name: common
     tasks_from: app_pre_req
 
-- name: npm install
-  community.general.npm:
-    path: /app
-    state: latest
+#- name: npm install
+#  community.general.npm:
+#    path: /app
+#    state: latest
 #  become_user: expense
 
 - name: Copy backend service file
