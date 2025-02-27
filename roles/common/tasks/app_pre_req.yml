@@ -12,14 +12,21 @@
 
 
 
-- name: Unarchive a file that is already on the remote machine
+#- name: Unarchive a file that is already on the remote machine
+#  ansible.builtin.unarchive:
+#    src: https://expense-artifacts.s3.amazonaws.com/expense-{{ component }}-v2.zip
+#    dest: "{{ app_dir }}"
+#    remote_src: yes
+#    owner: "{{app_user}}"
+#    group: "{{app_user}}"
+
+- name: Download and Extract App content - From Artifactory
   ansible.builtin.unarchive:
-    src: https://expense-artifacts.s3.amazonaws.com/expense-{{ component }}-v2.zip
+    src: http://{{artifactory_user}}:{{artifactory_password}}@artifactory-internal.shujadevops.shop:8082/artifactory/expense-{{ component }}/{{APP_VERSION}}.zip
     dest: "{{ app_dir }}"
     remote_src: yes
     owner: "{{app_user}}"
     group: "{{app_user}}"
-
 
 
 
