@@ -1,8 +1,8 @@
 format_version: 10
 pipelines:
-  frontend:
+  expense-frontend:
     group: defaultGroup
-    label_template: ${COUNT}
+    label_template:  ${env:APP_VERSION}
     lock_behavior: none
     display_order: -1
     materials:
@@ -13,6 +13,8 @@ pipelines:
         branch: main
     secure_variables:
       vault_token: AES:Sm/GySenrKRWu0QDKWH/IQ==:2QCFewXX/NGtNjBc5zY6ZaB/cT+pIGPOVjobBcXIveQ=
+    environment_variables:
+      APP_VERSION: ""
     stages:
 
       - test-stage1:
